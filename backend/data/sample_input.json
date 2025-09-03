@@ -1,0 +1,9 @@
+{
+  "temperature": 32.5,
+  "humidity": 28.3,
+  "wind_speed": 15.7,
+  "pressure": 1008.2,
+  "fire_weather_index": 16.8,
+  "description": "Example API request for high fire risk conditions",
+  "location": "Test Location"
+}

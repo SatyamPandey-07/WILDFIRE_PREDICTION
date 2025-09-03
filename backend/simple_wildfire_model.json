@@ -1,0 +1,33 @@
+{
+  "weights": [
+    4.396356171255421,
+    0.04433063718243559,
+    -0.14110042747502471,
+    0.09964036891013478,
+    -0.00793429199799029,
+    -0.12493604221192292
+  ],
+  "features": [
+    "temp_mean",
+    "humidity_min",
+    "wind_speed_max",
+    "pressure_mean",
+    "fire_weather_index"
+  ],
+  "means": {
+    "temp_mean": 24.569293120081664,
+    "humidity_min": 24.735373302596376,
+    "wind_speed_max": 16.664507227111343,
+    "pressure_mean": 948.2702977502565,
+    "fire_weather_index": 14.672501056684986
+  },
+  "stds": {
+    "temp_mean": 5.497118893816067,
+    "humidity_min": 13.149309376487645,
+    "wind_speed_max": 5.620593648592333,
+    "pressure_mean": 47.44415526512222,
+    "fire_weather_index": 14.316761360812809
+  },
+  "accuracy": 1.0,
+  "model_type": "SimpleLogisticRegression"
+}
