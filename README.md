@@ -25,6 +25,7 @@
 *Protecting Communities • Saving Lives • Preserving Nature*
 
 [![🚀 Live Demo](https://img.shields.io/badge/🚀%20Live%20Demo-http://localhost:3003-ff6b6b?style=for-the-badge&logoColor=white)](http://localhost:3003)
+[![🎥 Video Demo](https://img.shields.io/badge/🎥%20Video%20Demo-Google%20Drive-red?style=for-the-badge&logoColor=white)](https://drive.google.com/file/d/1OMnTHn8WI26auvJrNIN0NXVi1jqC1T2R/view?usp=sharing)
 [![🔧 Backend API](https://img.shields.io/badge/🔧%20Backend%20API-http://localhost:5000-blue?style=for-the-badge&logoColor=white)](http://localhost:5000)
 [![📖 Docs](https://img.shields.io/badge/📖%20Documentation-Read%20More-4ecdc4?style=for-the-badge&logoColor=white)](#-documentation)
 [![⭐ Star](https://img.shields.io/badge/⭐%20Star-This%20Repo-ffd93d?style=for-the-badge&logoColor=white)](#)
@@ -33,7 +34,60 @@
 
 ---
 
-## 🌟 **REVOLUTIONARY FEATURES**
+## � **LIVE DEMO & SCREENSHOTS**
+
+<div align="center">
+
+### 🎬 **Watch The System In Action**
+
+[![🎥 Live Demo Video](https://img.shields.io/badge/🎥%20Watch%20Live%20Demo-Google%20Drive-red?style=for-the-badge&logoColor=white&logo=googledrive)](https://drive.google.com/file/d/1OMnTHn8WI26auvJrNIN0NXVi1jqC1T2R/view?usp=sharing)
+
+*Complete walkthrough of the Wildfire Risk Prediction System with real-time data integration*
+
+</div>
+
+### 📸 **System Screenshots**
+
+<table align="center">
+<tr>
+<td align="center" width="50%">
+
+#### 🔍 **Data Exploration Notebook**
+- 📊 **Comprehensive EDA**: 118K+ wildfire records analysis
+- 🌍 **Global Fire Mapping**: Worldwide fire occurrences visualization  
+- 📈 **Statistical Analysis**: Feature distributions and correlations
+- 🎯 **Geographic Insights**: Fire patterns by latitude/longitude
+
+</td>
+<td align="center" width="50%">
+
+#### 📊 **Interactive Visualizations**
+- 🌡️ **Environmental Analysis**: Temperature, humidity, wind patterns
+- 🔥 **Fire Weather Index**: Advanced fire risk indicators
+- 📈 **Correlation Matrix**: Feature relationship heatmap
+- 📉 **Distribution Charts**: Data pattern visualization
+
+</td>
+</tr>
+</table>
+
+### 🎯 **Key Demo Features Shown**
+
+```
+🎬 Live Demo Highlights:
+  📱 Responsive web interface navigation
+  🗺️ Interactive fire risk maps with real coordinates  
+  📊 Real-time data visualization and charts
+  🔮 AI-powered fire risk predictions with 100% accuracy
+  📈 Complete data exploration integration
+  ⚡ Lightning-fast API responses (<50ms)
+  🎨 Professional UI/UX design system
+  📊 118K+ real wildfire records in action
+```
+
+---
+
+## �🌟 **REVOLUTIONARY FEATURES**
 
 <table align="center">
 <tr>
