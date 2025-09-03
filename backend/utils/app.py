@@ -49,6 +49,15 @@ if FLASK_AVAILABLE:
 
     # Initialize prediction service
     predictor = SimpleWildfirePredictionService()
+    
+    # Initialize data service
+    try:
+        from data_service import data_service
+        DATA_SERVICE_AVAILABLE = True
+        logger.info("✅ Data service loaded successfully")
+    except ImportError:
+        DATA_SERVICE_AVAILABLE = False
+        logger.warning("⚠️  Data service not available")
 
     @app.route('/health', methods=['GET'])
     def health_check():
@@ -136,6 +145,230 @@ if FLASK_AVAILABLE:
         except Exception as e:
             logger.error(f"Model info error: {str(e)}")
             return jsonify({"error": f"Could not retrieve model info: {str(e)}"}), 500
+
+    @app.route('/api/dataset-stats', methods=['GET'])
+    def get_dataset_stats():
+        """Get comprehensive dataset statistics"""
+        try:
+            if DATA_SERVICE_AVAILABLE:
+                stats = data_service.get_dataset_statistics()
+                return jsonify({
+                    "success": True,
+                    "data": stats,
+                    "source": "real_data"
+                })
+            else:
+                # Mock data fallback
+                return jsonify({
+                    "success": True,
+                    "data": {
+                        "total_records": 118858,
+                        "total_features": 17,
+                        "fire_incidents": 59452,
+                        "no_fire_cases": 59406,
+                        "fire_percentage": 50.02,
+                        "no_fire_percentage": 49.98,
+                        "missing_values": 0,
+                        "missing_percentage": 0.0
+                    },
+                    "source": "mock_data"
+                })
+        except Exception as e:
+            logger.error(f"Error getting dataset stats: {str(e)}")
+            return jsonify({"error": "Failed to get dataset statistics"}), 500
+
+    @app.route('/api/correlations', methods=['GET'])
+    def get_correlations():
+        """Get feature correlations with fire occurrence"""
+        try:
+            if DATA_SERVICE_AVAILABLE:
+                correlations = data_service.get_correlation_data()
+                return jsonify({
+                    "success": True,
+                    "data": correlations,
+                    "source": "real_data"
+                })
+            else:
+                # Mock correlation data
+                return jsonify({
+                    "success": True,
+                    "data": {
+                        "correlations": {
+                            "daynight_N": 0.293,
+                            "frp": 0.290,
+                            "humidity_min": 0.138,
+                            "fire_weather_index": 0.127,
+                            "temp_range": 0.119
+                        },
+                        "top_positive_correlations": [
+                            {"feature": "daynight_N", "correlation": 0.293},
+                            {"feature": "frp", "correlation": 0.290},
+                            {"feature": "humidity_min", "correlation": 0.138},
+                            {"feature": "fire_weather_index", "correlation": 0.127},
+                            {"feature": "temp_range", "correlation": 0.119}
+                        ]
+                    },
+                    "source": "mock_data"
+                })
+        except Exception as e:
+            logger.error(f"Error getting correlations: {str(e)}")
+            return jsonify({"error": "Failed to get correlations"}), 500
+
+    @app.route('/api/geographical-data', methods=['GET'])
+    def get_geographical_data():
+        """Get geographical fire occurrence data"""
+        try:
+            sample_size = request.args.get('sample_size', 300, type=int)
+            
+            if DATA_SERVICE_AVAILABLE:
+                geo_data = data_service.get_geographical_data(sample_size)
+                return jsonify({
+                    "success": True,
+                    "data": geo_data,
+                    "count": len(geo_data),
+                    "source": "real_data"
+                })
+            else:
+                # Mock geographical data
+                import random
+                mock_data = []
+                for i in range(min(sample_size, 50)):
+                    mock_data.append({
+                        "lat": random.uniform(-60, 70),
+                        "lon": random.uniform(-180, 180),
+                        "fire_occurred": random.choice([True, False]),
+                        "fire_weather_index": random.uniform(0, 30),
+                        "temperature": random.uniform(10, 40),
+                        "humidity": random.uniform(10, 90),
+                        "wind_speed": random.uniform(5, 30)
+                    })
+                return jsonify({
+                    "success": True,
+                    "data": mock_data,
+                    "count": len(mock_data),
+                    "source": "mock_data"
+                })
+        except Exception as e:
+            logger.error(f"Error getting geographical data: {str(e)}")
+            return jsonify({"error": "Failed to get geographical data"}), 500
+
+    @app.route('/api/outlier-analysis', methods=['GET'])
+    def get_outlier_analysis():
+        """Get outlier detection results"""
+        try:
+            if DATA_SERVICE_AVAILABLE:
+                outliers = data_service.get_outlier_analysis()
+                return jsonify({
+                    "success": True,
+                    "data": outliers,
+                    "source": "real_data"
+                })
+            else:
+                # Mock outlier data
+                return jsonify({
+                    "success": True,
+                    "data": {
+                        "temp_mean": {"outlier_count": 3338, "percentage": 2.81},
+                        "humidity_min": {"outlier_count": 1358, "percentage": 1.14},
+                        "wind_speed_max": {"outlier_count": 3735, "percentage": 3.14},
+                        "fire_weather_index": {"outlier_count": 8855, "percentage": 7.45}
+                    },
+                    "source": "mock_data"
+                })
+        except Exception as e:
+            logger.error(f"Error getting outlier analysis: {str(e)}")
+            return jsonify({"error": "Failed to get outlier analysis"}), 500
+
+    @app.route('/api/feature-distributions', methods=['GET'])
+    def get_feature_distributions():
+        """Get feature statistical distributions"""
+        try:
+            if DATA_SERVICE_AVAILABLE:
+                distributions = data_service.get_feature_distributions()
+                return jsonify({
+                    "success": True,
+                    "data": distributions,
+                    "source": "real_data"
+                })
+            else:
+                # Mock distribution data
+                return jsonify({
+                    "success": True,
+                    "data": {
+                        "temp_mean": {"mean": 24.57, "std": 5.50, "min": -49.05, "max": 41.55},
+                        "humidity_min": {"mean": 24.74, "std": 13.15, "min": 1.0, "max": 92.0},
+                        "wind_speed_max": {"mean": 16.66, "std": 5.62, "min": 3.3, "max": 62.7},
+                        "fire_weather_index": {"mean": 14.67, "std": 14.32, "min": -16.92, "max": 211.63}
+                    },
+                    "source": "mock_data"
+                })
+        except Exception as e:
+            logger.error(f"Error getting feature distributions: {str(e)}")
+            return jsonify({"error": "Failed to get feature distributions"}), 500
+
+    @app.route('/api/risk-distribution', methods=['GET'])
+    def get_risk_distribution():
+        """Get risk level distribution"""
+        try:
+            if DATA_SERVICE_AVAILABLE:
+                risk_dist = data_service.get_risk_distribution()
+                return jsonify({
+                    "success": True,
+                    "data": risk_dist,
+                    "source": "real_data"
+                })
+            else:
+                # Mock risk distribution
+                return jsonify({
+                    "success": True,
+                    "data": {
+                        "distribution": [
+                            {"name": "Low", "value": 25, "percentage": 25.0, "color": "#10b981"},
+                            {"name": "Medium", "value": 35, "percentage": 35.0, "color": "#f59e0b"},
+                            {"name": "High", "value": 30, "percentage": 30.0, "color": "#fb923c"},
+                            {"name": "Extreme", "value": 10, "percentage": 10.0, "color": "#ef4444"}
+                        ]
+                    },
+                    "source": "mock_data"
+                })
+        except Exception as e:
+            logger.error(f"Error getting risk distribution: {str(e)}")
+            return jsonify({"error": "Failed to get risk distribution"}), 500
+
+    @app.route('/api/historical-trends', methods=['GET'])
+    def get_historical_trends():
+        """Get historical fire trends"""
+        try:
+            if DATA_SERVICE_AVAILABLE:
+                trends = data_service.get_historical_trends()
+                return jsonify({
+                    "success": True,
+                    "data": trends,
+                    "source": "real_data"
+                })
+            else:
+                # Mock historical trends
+                return jsonify({
+                    "success": True,
+                    "data": [
+                        {"month": "Jan", "fires": 15, "riskLevel": 25},
+                        {"month": "Feb", "fires": 18, "riskLevel": 30},
+                        {"month": "Mar", "fires": 28, "riskLevel": 45},
+                        {"month": "Apr", "fires": 42, "riskLevel": 65},
+                        {"month": "May", "fires": 58, "riskLevel": 75},
+                        {"month": "Jun", "fires": 73, "riskLevel": 85},
+                        {"month": "Jul", "fires": 89, "riskLevel": 92},
+                        {"month": "Aug", "fires": 81, "riskLevel": 88},
+                        {"month": "Sep", "fires": 64, "riskLevel": 70},
+                        {"month": "Oct", "fires": 38, "riskLevel": 55},
+                        {"month": "Nov", "fires": 22, "riskLevel": 35},
+                        {"month": "Dec", "fires": 15, "riskLevel": 28}
+                    ],
+                    "source": "mock_data"
+                })
+        except Exception as e:
+            logger.error(f"Error getting historical trends: {str(e)}")
+            return jsonify({"error": "Failed to get historical trends"}), 500
 
 def test_api():
     """Test the API without Flask"""
