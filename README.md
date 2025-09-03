@@ -24,7 +24,6 @@
 **🎯 Next-Generation AI Platform for Real-Time Wildfire Risk Assessment & Prevention**  
 *Protecting Communities • Saving Lives • Preserving Nature*
 
-[![🚀 Live Demo](https://img.shields.io/badge/🚀%20Live%20Demo-http://localhost:3003-ff6b6b?style=for-the-badge&logoColor=white)](http://localhost:3003)
 [![🎥 Video Demo](https://img.shields.io/badge/🎥%20Video%20Demo-Google%20Drive-red?style=for-the-badge&logoColor=white)](https://drive.google.com/file/d/1OMnTHn8WI26auvJrNIN0NXVi1jqC1T2R/view?usp=sharing)
 [![🔧 Backend API](https://img.shields.io/badge/🔧%20Backend%20API-http://localhost:5000-blue?style=for-the-badge&logoColor=white)](http://localhost:5000)
 [![📖 Docs](https://img.shields.io/badge/📖%20Documentation-Read%20More-4ecdc4?style=for-the-badge&logoColor=white)](#-documentation)
@@ -34,7 +33,7 @@
 
 ---
 
-## � **LIVE DEMO & SCREENSHOTS**
+## � **LIVE DEMO **
 
 <div align="center">
 
@@ -47,6 +46,10 @@
 </div>
 
 ### 📸 **System Screenshots**
+<img width="1611" height="1077" alt="Screenshot 2025-09-03 234838" src="https://github.com/user-attachments/assets/1bd4342e-7957-487f-9e65-b9227f308733" />
+<img width="1601" height="1077" alt="Screenshot 2025-09-03 234807" src="https://github.com/user-attachments/assets/4c34fbd9-13ab-485f-86dc-0e0eed5b4267" />
+<img width="1603" height="1078" alt="Screenshot 2025-09-03 234722" src="https://github.com/user-attachments/assets/b7474c98-2af2-4787-9958-5c683858ec0d" />
+<img width="1919" height="998" alt="Screenshot 2025-09-03 234618" src="https://github.com/user-attachments/assets/7ef5f714-c6c1-4cf6-bbc7-4b9f55fdae58" />
 
 <table align="center">
 <tr>
